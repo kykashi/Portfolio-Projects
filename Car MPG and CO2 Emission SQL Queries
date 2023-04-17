@@ -1,0 +1,68 @@
+--Preview of Entire Dataset
+SELECT *
+FROM dbo.emissions
+
+--Selecting Data I will Use
+SELECT DISTINCT
+Make,
+Model, 
+Cylinders,
+Fuel_Consumption_comb_mpg,
+CO2_Emissions_g_km
+FROM dbo.emissions
+
+--Determing Enging Classifications based on number of possible engine cylinders
+SELEC DISTINCT
+Cylinders
+FROm dbo.emissions
+ORDER BY Cylinders
+
+--MPG and CO2 Emissions for 3 Cylinder Engines
+SELECT
+AVG(Fuel_Consumption_Comb_mpg) AS mpg_3
+AVG(CO2_Emissions_g_km) AS emissions_3
+FROM dbo.emissions
+WHERE Cylinders = 3
+
+--MPG and CO2 Emissions for 4 Cylinder Engines
+SELECT
+AVG(Fuel_Consumption_Comb_mpg) AS mpg_4
+AVG(CO2_Emissions_g_km) AS emissions_4
+FROM dbo.emissions
+WHERE Cylinders = 4
+
+--MPG and CO2 Emissions for 6 Cylinder Engines
+SELECT
+AVG(Fuel_Consumption_Comb_mpg) AS mpg_6
+AVG(CO2_Emissions_g_km) AS emissions_6
+FROM dbo.emissions
+WHERE Cylinders = 6
+
+--MPG and CO2 Emissions for 8 Cylinder Engines
+SELECT
+AVG(Fuel_Consumption_Comb_mpg) AS mpg_8
+AVG(CO2_Emissions_g_km) AS emissions_8
+FROM dbo.emissions
+WHERE Cylinders = 8
+
+--MPG and CO2 Emissions for 10 Cylinder Engines
+SELECT
+AVG(Fuel_Consumption_Comb_mpg) AS mpg_10
+AVG(CO2_Emissions_g_km) AS emissions_10
+FROM dbo.emissions
+WHERE Cylinders = 10
+
+--MPG and CO2 Emissions for 12 Cylinder Engines
+SELECT
+AVG(Fuel_Consumption_Comb_mpg) AS mpg_12
+AVG(CO2_Emissions_g_km) AS emissions_12
+FROM dbo.emissions
+WHERE Cylinders = 12
+
+--MPG and CO2 Emissions for 16 Cylinder Engines
+SELECT
+AVG(Fuel_Consumption_Comb_mpg) AS mpg_16
+AVG(CO2_Emissions_g_km) AS emissions_16
+FROM dbo.emissions
+WHERE Cylinders = 16
+
