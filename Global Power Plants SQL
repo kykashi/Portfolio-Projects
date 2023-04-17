@@ -1,0 +1,43 @@
+-- Preview Entire Data Set
+SELECT *
+ FROM `astral-theory-379217.generator.generator_data` 
+ 
+ --Power Plants Table (Eliminating unneeded columns and aliasing column names)
+SELECT  
+country_long AS Country, 
+name_of_powerplant AS Name, 
+capacity_in_MW AS MWCapacity, 
+primary_fuel, 
+latitude, 
+longitude,
+FROM `astral-theory-379217.generator.generator_data` 
+WHERE 'Country' IS NOT NULL
+ORDER BY (Country)
+
+-- Creating Table for Capacity vs. Country, Avg Capacity by Country, and Total Capacity 
+SELECT  
+country_long AS Country, 
+AVG(capacity_in_MW) AS AvgCapacity, 
+SUM(capacity_in_MW) AS TotalCapacity
+FROM `astral-theory-379217.generator.generator_data` 
+GROUP BY country_long
+ORDER BY SUM(capacity_in_MW) DESC
+
+-- Querying Countries with Greatest Power Capacity - Table for Top 10 Countries for Greatest Power Capacity 
+SELECT  country_long AS Country, 
+AVG(capacity_in_MW) AS AvgCapacity, 
+SUM(capacity_in_MW) AS TotalCapacity
+FROM `astral-theory-379217.generator.generator_data` 
+GROUP BY Country
+ORDER BY SUM(capacity_in_MW) DESC LIMIT 10
+
+-- Table for Greatest Capacity by Fuel Type 
+SELECT  
+DISTINCT(primary_fuel), 
+SUM(capacity_in_MW) AS TotalCapacity, 
+AVG(capacity_in_MW) AS AVGCapacity
+FROM `astral-theory-379217.generator.generator_data` 
+GROUP BY (primary_fuel)
+ORDER BY(TotalCapacity) DESC
+
+
