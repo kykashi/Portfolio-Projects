@@ -11,7 +11,7 @@ Fuel_Consumption_comb_mpg,
 CO2_Emissions_g_km
 FROM dbo.emissions
 
---Determing Enging Classifications based on number of possible engine cylinders
+--Determing engine Classifications based on number of possible engine cylinders
 SELEC DISTINCT
 Cylinders
 FROm dbo.emissions
