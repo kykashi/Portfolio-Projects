@@ -7,7 +7,7 @@ SELECT *
 FROM 'astral-theory-379217.movie_data.highest_grossers'
 ORDER BY YEAR
 
---Eliminating Black Column 'string_field_5'
+--Eliminating Blank Column 'string_field_5'
 ALTER TABLE 'astral-theory-379217_data.annual_tickets'
 DROP COLUMN string_field_5
 
