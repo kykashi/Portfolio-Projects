@@ -13,7 +13,7 @@ DROP COLUMN string_field_5
 
 --JOINING Both Tables By Year (INNER JOIN, ALIASING)
 SELECT *
-FROM FROM 'astral-theory-379217.movie_data.highest_grossers' AS highest_grossers
+FROM 'astral-theory-379217.movie_data.highest_grossers' AS highest_grossers
 INNER JOIN 'astral-theory-379217_data.annual_tickets' AS Tickets 
 ON highest_grossers.YEAR = Tickets.YEAR
 ORDER BY highest_grossers.YEAR
