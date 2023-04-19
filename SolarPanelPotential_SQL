@@ -1,5 +1,5 @@
 
---Preview Data I will Use -- creating a Temp Table cte_solar_panels 
+--Preview Data I will Use -- TEMP TABLE 
 --available buildings, Total panels, kw, sunlight kw, carbon metric tons, install count by state
 
 With cte_solar_panels AS (
@@ -19,7 +19,8 @@ FROM cte_solar_panels
 GROUP BY state_name
 ORDER BY buildings desc
 
---Ordered by carbon_metric_tons, top 20 states
+--Ordered by carbon_metric_tons, top 20 states----------
+
 SELECT 
 state_name,
 SUM(number_of_panels_total) as total_panels,
@@ -32,6 +33,7 @@ GROUP BY state_name
 ORDER BY carbon_metric_tons desc
 
 --average kw generated per panel, carbon metric ton per panel, number of panels per building, of top 20 states
+
 SELECT 
 state_name,
 SUM(count_qualified) as buildings,
@@ -59,7 +61,8 @@ FROM `bigquery-public-data.sunroof_solar.solar_potential_by_censustract`
 Group By state_name
 ORDER BY coverage_percentage desc
 
---Joining Both Tables on State_Name Column, ordered by kw_total for Final Table Result (convert kw to watt)
+--JOIN on Both Tables with TEMP TABLE on State_Name Column, ordered by kw_total for Final Table Result (convert kw to watt)
+
 WITH cte_coverage AS (
 SELECT 
 state_name,
