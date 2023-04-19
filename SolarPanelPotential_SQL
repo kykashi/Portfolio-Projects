@@ -1,8 +1,7 @@
 
---Preview Data I will Use -- TEMP TABLE 
---available buildings, Total panels, kw, sunlight kw, carbon metric tons, install count by state
+--Preview Data I will Use. Eliminating columns and using a CTE--
 
-With cte_solar_panels AS (
+WITH cte_solar_panels AS (
 SELECT *
 EXCEPT (lng_max, lng_min, lat_max, lat_min, lng_avg, lat_avg, center_point, install_size_kw_buckets)
 FROM `bigquery-public-data.sunroof_solar.solar_potential_by_censustract`)
@@ -19,7 +18,7 @@ FROM cte_solar_panels
 GROUP BY state_name
 ORDER BY buildings desc
 
---Ordered by carbon_metric_tons, top 20 states----------
+--Ordering Table by most carbon_metric_tons abated--
 
 SELECT 
 state_name,
@@ -32,7 +31,7 @@ FROM `bigquery-public-data.sunroof_solar.solar_potential_by_censustract`
 GROUP BY state_name
 ORDER BY carbon_metric_tons desc
 
---average kw generated per panel, carbon metric ton per panel, number of panels per building, of top 20 states
+-- Finding average kW generated per panel, carbon mt per panel, # of panels per building--
 
 SELECT 
 state_name,
@@ -50,7 +49,7 @@ GROUP BY state_name
 ORDER BY buildings desc
 LIMIT 25
 
---Creating table for percentage of buildings with solar in each state over possible buildings 
+--Finding percentage of buildings with solar in each state given qualified buildings--
 
 SELECT 
 state_name,
@@ -61,34 +60,38 @@ FROM `bigquery-public-data.sunroof_solar.solar_potential_by_censustract`
 Group By state_name
 ORDER BY coverage_percentage desc
 
---JOIN on Both Tables with TEMP TABLE on State_Name Column, ordered by kw_total for Final Table Result (convert kw to watt)
+--JOINING Query with CTE on State_Name Column, ordered by kw_total for Final Table Result--
 
 WITH cte_coverage AS (
 SELECT 
 state_name,
-SUM(existing_installs_count) as installs,
-SUM(count_qualified) as buildings,
-SUM(existing_installs_count)/SUM(count_qualified)*100 as coverage_percentage
+SUM(existing_installs_count) AS installs,
+SUM(count_qualified) AS buildings,
+SUM(existing_installs_count)/SUM(count_qualified)*100 AS coverage_percentage
 FROM `bigquery-public-data.sunroof_solar.solar_potential_by_censustract`
 GROUP BY state_name
 )
 
 SELECT 
 sunpanels.state_name,
-SUM(count_qualified) as buildings,
-SUM(number_of_panels_total) as panels,
-SUM(kw_total) as kw_total,
-SUM(yearly_sunlight_kwh_total) as sunlight_kw_total,
-SUM(carbon_offset_metric_tons) as carbon_metric_tons,
-SUM(existing_installs_count) as install_count,
-SUM(kw_total)/SUM(number_of_panels_total)*1000 as w_per_panel,
-SUM(carbon_offset_metric_tons)/SUM(number_of_panels_total) as carbon_reduced_by_panel,
-SUM(number_of_panels_total)/SUM(count_qualified) as panels_per_building
-FROM `bigquery-public-data.sunroof_solar.solar_potential_by_censustract` as sunpanels
+SUM(count_qualified) AS buildings,
+SUM(number_of_panels_total) AS panels,
+SUM(kw_total) AS kw_total,
+SUM(kw_total) AS w_total,
+SUM(yearly_sunlight_kwh_total) AS sunlight_kw_total,
+SUM(yearly_sunlight_kwh_total)*1000 AS sunlight_w_total,
+SUM(carbon_offset_metric_tons) AS carbon_mtons_reduced,
+SUM(existing_installs_count) AS install_count,
+SUM(kw_total)/SUM(number_of_panels_total)*1000 AS w_per_panel,
+SUM(carbon_offset_metric_tons)/SUM(number_of_panels_total) AS carbonMton_reduced_by_panel,
+SUM(number_of_panels_total)/SUM(count_qualified) AS panels_per_building,
+cte_coverage.coverage_percentage
+FROM `bigquery-public-data.sunroof_solar.solar_potential_by_censustract` AS sunpanels
 JOIN cte_coverage ON sunpanels.state_name = cte_coverage.state_name
-GROUP BY sunpanels.state_name
-ORDER BY kw_total desc
+GROUP BY sunpanels.state_name, cte_coverage.coverage_percentage
+ORDER BY sunpanels.state_name
 
+--I Exported this Data into Excel to build a Tableau Dashboard
 
 
 
