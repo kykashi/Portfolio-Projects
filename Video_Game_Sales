@@ -1,0 +1,176 @@
+## Querying Data in SQL for formatting in Excel and then Data Visualization in Tableau 
+YEARS 2000-2017
+
+# Preview of all Data
+
+SELECT DISTINCT *
+FROM 
+  `astral-theory-379217.games.video_game`
+LIMIT 100
+
+# Sales Table by Region, ORDERED by YEAR
+SELECT DISTINCT  
+  Name, 
+  Year_of_Release, 
+  Genre, 
+  NA_Sales, 
+  EU_Sales, 
+  JP_Sales, 
+  Other_Sales
+  Global_Sales
+FROM 
+  `astral-theory-379217.games.video_game`
+WHERE 
+  Year_of_Release >= '2000'
+ORDER BY 
+  Year_of_Release
+
+## Aggregated total Region Sales in millions of dollars USD
+
+WITH sales AS( 
+SELECT DISTINCT  
+  Name, 
+  Year_of_Release, 
+  Genre, NA_Sales, 
+  EU_Sales, JP_Sales, 
+  Other_Sales, 
+  Global_Sales
+FROM 
+  `astral-theory-379217.games.video_game`
+WHERE 
+  Year_of_Release >= '2000'
+  )
+SELECT 
+  SUM(NA_Sales) as NA,
+  SUM(EU_Sales) as EU,
+  SUM(JP_Sales) as JP,
+  SUM(Other_Sales) as Other_Regions,
+  SUM(Global_Sales) as Global,
+FROM 
+  sales
+
+# Total Region Sales Rounded to the Nearest Whole Number
+
+WITH sales AS( 
+SELECT DISTINCT  
+  Name, 
+  Year_of_Release, 
+  Genre, NA_Sales, 
+  EU_Sales, JP_Sales, 
+  Other_Sales, 
+  Global_Sales
+FROM 
+  `astral-theory-379217.games.video_game`
+WHERE 
+  Year_of_Release >= '2000'
+)
+SELECT 
+  ROUND(SUM(NA_Sales)) as NA,
+  ROUND(SUM(EU_Sales)) as EU,
+  ROUND(SUM(JP_Sales)) as JP,
+  ROUND(SUM(Other_Sales)) as Other_Regions,
+  ROUND(SUM(Global_Sales)) as Global,
+FROM 
+  sales
+
+## Aggregated Platform Sales Data 
+
+WITH sales AS( 
+  SELECT 
+  DISTINCT  
+  *
+FROM 
+  `astral-theory-379217.games.video_game`
+WHERE 
+  Year_of_Release >= '2000'
+)
+SELECT 
+  Platform,
+  SUM(NA_Sales) as NA,
+  SUM(EU_Sales) as EU,
+  SUM(JP_Sales) as JP,
+  SUM(Other_Sales) as Other,
+  SUM(Global_Sales) as Global,
+FROM 
+  sales
+Group BY 
+  Platform
+Order By 
+  Platform
+
+## Platform Sales Data Rounded
+
+WITH sales AS( 
+  SELECT 
+  DISTINCT  
+*
+FROM `astral-theory-379217.games.video_game`
+WHERE Year_of_Release >= '2000'
+)
+SELECT 
+  Platform,
+  ROUND(SUM(NA_Sales)) as NA,
+  ROUND(SUM(EU_Sales)) as EU,
+  ROUND(SUM(JP_Sales)) as JP,
+  ROUND(SUM(Other_Sales)) as Other,
+  ROUND(SUM(Global_Sales)) as Global,
+FROM 
+  sales
+Group BY 
+  Platform
+Order By 
+  Platform
+
+## Top 100 Game Publishers (Highest Global Sales)
+
+WITH sales AS( 
+  SELECT 
+  DISTINCT  
+*
+FROM 
+  `astral-theory-379217.games.video_game`
+WHERE 
+  Year_of_Release >= '2000'
+)
+SELECT 
+  Publisher,
+  SUM(NA_Sales) as NA,
+  SUM(EU_Sales) as EU,
+  SUM(JP_Sales) as JP,
+  SUM(Other_Sales) as Other,
+  SUM(Global_Sales) as Global,
+FROM 
+  sales
+Group BY 
+  Publisher
+Order By 
+  Global DESC
+LIMIT 100
+
+## Sales Rounded Top 100 Game Publishers (Highest Global Sales)
+
+WITH sales AS( 
+  SELECT DISTINCT  
+  *
+FROM 
+  `astral-theory-379217.games.video_game`
+WHERE 
+  Year_of_Release >= '2000'
+)
+SELECT 
+  Publisher,
+  ROUND(SUM(NA_Sales)) as NA,
+  ROUND(SUM(EU_Sales)) as EU,
+  ROUND(SUM(JP_Sales)) as JP,
+  ROUND(SUM(Other_Sales)) as Other,
+  ROUND(SUM(Global_Sales)) as Global,
+FROM 
+  sales
+Group BY 
+  Publisher
+Order By 
+  Global DESC
+LIMIT 100
+
+
+
