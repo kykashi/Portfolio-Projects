@@ -10,7 +10,7 @@
 #### [Video Game Tableau Dashboard](https://public.tableau.com/app/profile/kyle2216/viz/NorthAmericaEuropeandJapaneseVideoGameSales/Dashboard1)
 #### [Video Game Data Set](https://www.kaggle.com/datasets/ibriiee/video-games-sales-dataset-2022-updated-extra-feat)
 
-## [US Solar Panel Potential Energy](https://github.com/kykashi/Portfolio-Projects/blob/main/SolarPanelPotential_SQL)
+## [US Solar Panel Potential Energy Data Analysis](https://github.com/kykashi/Portfolio-Projects/blob/main/SolarPanelPotential_SQL)
 - Used Microsoft Excel, SQL, and Tableau to analyze the potential solar panel energy generation and carbon emission reduction for the US
 - California dominates the potential for solar potential generation in a state, with the most available buildings and the most possible solar panels
 - Florida leads the way for most potential carbon metric tons reduced
