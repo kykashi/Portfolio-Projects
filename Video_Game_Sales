@@ -1,4 +1,5 @@
 ## Preview of current data set, Games sales from 1980 to about 2017
+Dataset from Kaggle: https://www.kaggle.com/datasets/ibriiee/video-games-sales-dataset-2022-updated-extra-feat
 
 SELECT 
 DISTINCT  
