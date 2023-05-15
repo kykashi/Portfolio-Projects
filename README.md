@@ -1,6 +1,6 @@
 # SQL Portfolio Projects 
 
-## [North American, European, and Japanese Video Game Sales Data Analysis](https://github.com/kykashi/Portfolio-Projects/blob/main/Video_Game_Sales)
+## [Video Game Sales Data Analysis: North America, Europe, Japan](https://github.com/kykashi/Portfolio-Projects/blob/main/Video_Game_Sales)
 - Used SQL, MS Excel (Pivot Tables), and Tableau to analyze video game sales data from 1980-2017
 - NA and EU have similar video game interests in terms of genres like action, and shooting games 
 - NA and EU also enjoy similar video game platforms as demonstrated in sales of games for particular platforms
