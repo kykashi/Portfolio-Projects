@@ -1,4 +1,4 @@
-# SQL Portfolio Projects
+# <span style="color:yellow">SQL Portfolio Projects</span>
 
 ## [North American, European, and Japanese Video Game Sales Data Analysis](https://github.com/kykashi/Portfolio-Projects/blob/main/Video_Game_Sales)
 - Used SQL, Microsoft Excel (Pivot Tables), and Tableau to analyze video game sales data from 1980-2017
