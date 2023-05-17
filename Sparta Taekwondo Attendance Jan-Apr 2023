@@ -2,6 +2,36 @@
 ## Data cleaned in Microsoft Excel, then extracted using SQL
 ## The colors like 'White', 'Yellow' etc. indicate belt ranks 
 
+# Previewing entire data set -----------------------------------------------------
+SELECT 
+* 
+FROM `astral-theory-379217.TKD_Attendance.Q1` 
+
+
+# Finding the total classes for each rank and the average attendance per month from January-April 2023
+## Used ChatGPT to optimize this query
+
+SELECT
+  Rank,
+  SUM(Classes) as Total,
+  ROUND(AVG(Classes)) as Average,
+  ROUND(AVG(Classes))/4 as Monthly_Average
+From (
+  SELECT
+  ID,
+  RANK,
+  COUNT(Rank) as Classes
+  FROM
+`astral-theory-379217.TKD_Attendance.Q1`
+WHERE Rank IN ('White', 'Yellow', 'Orange', 'Green', 'Blue', 'Red') 
+Group By ID, Rank
+Having 
+COUNT(Rank) >= 16
+)
+GROUP BY
+Rank
+ORDER BY
+Monthly_Average des
 SELECT
   Rank,
   SUM(Classes) as Total,
