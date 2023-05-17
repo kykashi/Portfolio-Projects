@@ -1,0 +1,25 @@
+## Used data from Sparta TKD's attendance software Kicksite to find the average student attendance at each rank in 2023
+## Data cleaned in Microsoft Excel, then extracted using SQL
+## The colors like 'White', 'Yellow' etc. indicate belt ranks 
+
+SELECT
+  Rank,
+  SUM(Classes) as Total,
+  ROUND(AVG(Classes)) as Average,
+  ROUND(AVG(Classes))/4 as Monthly_Average
+From (
+  SELECT
+  ID,
+  RANK,
+  COUNT(Rank) as Classes
+  FROM
+`astral-theory-379217.TKD_Attendance.Q1`
+WHERE Rank IN ('White', 'Yellow', 'Orange', 'Green', 'Blue', 'Red') 
+Group By ID, Rank
+Having 
+COUNT(Rank) >= 16
+)
+GROUP BY
+Rank
+ORDER BY
+Monthly_Average desc
