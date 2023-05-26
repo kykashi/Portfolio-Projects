@@ -17,7 +17,7 @@
 - JP has a unique interest in role-plaging and platform games, and also is unique for popularity in handheld gaming platforms
 - Interested to see how the Pandemic has increased the sales and popularity of PC gaming
 - Interested to see how the release of the PS5 and the Nintendo Switch, along with new games have affected these numbers
-### [Video Game Tableau Dashboard](https://public.tableau.com/app/profile/kyle2216/viz/NorthAmericaEuropeandJapaneseVideoGameSales/Dashboard1)
+### [Video Game Tableau Dashboard](https://public.tableau.com/app/profile/kyle2216/viz/NorthAmericaEuropeJapanVideoGameSalesDataAnalysis/NAEUandJPVideoGameSalesData1982-2020?publish=yes)
 #### [Video Game Data Set](https://www.kaggle.com/datasets/ibriiee/video-games-sales-dataset-2022-updated-extra-feat)
 
 ## [US Solar Panel Potential Energy Data Analysis](https://github.com/kykashi/Portfolio-Projects/blob/main/SolarPanelPotential_SQL)
