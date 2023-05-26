@@ -1,5 +1,15 @@
 # SQL Portfolio Projects 
 
+## [Legend of Zelda Sales](https://github.com/kykashi/SQL-Projects/blob/main/Legend%20of%20Zelda)
+-Data extraction with SQL, data cleaning, data formatting, and data analysis with Microsoft Excel
+-Built an interactive dashboard in Tableau for the number of copies sold by title and by platform
+-As of 2021, the bestselling game is 'Breath of the Wild' accounting for 28% of all Zelda games sold
+-Most Zelda games were sold on the Nintendo Switch–accounting for over 35 million copies
+-Peak years include 1998, 2002, 2006, 2011, and 2017 
+-Interested to see how the newly released 'Tears of the Kingdom' will affect this sales data
+###[Legend of Zelda Sales Tableau Dashboard](https://public.tableau.com/app/profile/kyle2216/viz/LegendofZeldaSales1991-2021Dashboard/ZeldaSalesDashboard)
+####[Data Set](https://www.kaggle.com/datasets/codefantasy/list-of-best-selling-nintendo-games)
+
 ## [Video Game Sales Data Analysis: North America, Europe, Japan](https://github.com/kykashi/Portfolio-Projects/blob/main/Video_Game_Sales)
 - Used SQL, MS Excel (Pivot Tables), and Tableau to analyze video game sales data from 1980-2017
 - NA and EU have similar video game interests in terms of genres like action, and shooting games 
