@@ -1,0 +1,18 @@
+## Preview of Entire Data set
+
+SELECT  *
+FROM `astral-theory-379217.nintendo.games` 
+LIMIT 1000
+
+## Filtering data for 'Legend of Zelda Titles' and excluding Developer and publisher columns----------------------------------------------------
+
+SELECT 
+Game,
+Release_date
+Publisher,
+Sales,
+Platform,
+FROM 
+`astral-theory-379217.nintendo.games` 
+WHERE 
+Game Like '%Zelda%'
