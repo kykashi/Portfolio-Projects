@@ -1,6 +1,6 @@
 # SQL Portfolio Projects 
 
-## [Legend of Zelda Sales](https://github.com/kykashi/SQL-Projects/blob/main/Legend%20of%20Zelda)
+## [The Legend of Zelda Video Game Sales](https://github.com/kykashi/SQL-Projects/blob/main/Legend%20of%20Zelda)
 - Data extraction with SQL, data cleaning, data formatting, and data analysis with Microsoft Excel
 - Built an interactive dashboard in Tableau for the number of copies sold by title and by platform
 - As of 2021, the bestselling game is 'Breath of the Wild' accounting for 28% of all Zelda games sold
