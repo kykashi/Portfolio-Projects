@@ -1,0 +1,101 @@
+## Preview of all Data-------------------------------------------------------------------------------------------
+
+SELECT  *
+FROM `astral-theory-379217.TKD_Attendance.March_2023` LIMIT 1000
+
+## Selecting the Columns I need ---------------------------------------------------------------------------------
+
+SELECT
+ID,
+Day,
+Attendance_Date,
+Rank,
+Classes_at_Rank as Classes
+FROM `astral-theory-379217.TKD_Attendance.March_2023` 
+
+## Attendance by Day---------------------------------------------------------------------------------------------
+
+SELECT DISTINCT
+Day,
+COUNT(Rank) as Classes
+FROM (SELECT
+ID,
+Day,
+Attendance_Date,
+Rank,
+Classes_at_Rank as Total_Classes
+FROM `astral-theory-379217.TKD_Attendance.March_2023` )
+GROUP BY
+Day
+Order by Classes Desc
+
+## Total Classes per rank by day--------------------------------------------------------------------------------
+
+SELECT
+Rank,
+COUNTIF(Day = 'Mon') as Monday,
+COUNTIF(Day = 'Tue') as Tuesday,
+COUNTIF(Day = 'Wed') as Wednesday,
+COUNTIF(Day = 'Thur') as Thursday,
+COUNTIF(Day = 'Fri') Friday,
+COUNTIF(Day= 'Sat') Saturday,
+COUNTIF(Day= 'Sun') as Sunday,
+COUNT(Rank) as Classes
+FROM `astral-theory-379217.TKD_Attendance.March_2023` 
+Group By 
+Rank
+
+## Total Classes per rank in January------------------------------------------------------------------------
+SELECT
+Rank,
+COUNTIF(Day = 'Mon') as Monday,
+COUNTIF(Day = 'Tue') as Tuesday,
+COUNTIF(Day = 'Wed') as Wednesday,
+COUNTIF(Day = 'Thur') as Thursday,
+COUNTIF(Day = 'Fri') Friday,
+COUNTIF(Day= 'Sat') Saturday,
+COUNTIF(Day= 'Sun') as Sunday,
+COUNT(Rank) as Classes
+FROM `astral-theory-379217.TKD_Attendance.March_2023` 
+WHERE
+Attendance_Date LIKE '%Jan%'
+Group By 
+Rank
+
+
+## Total Classes per rank in February-----------------------------------------------------------------------
+SELECT
+Rank,
+COUNTIF(Day = 'Mon') as Monday,
+COUNTIF(Day = 'Tue') as Tuesday,
+COUNTIF(Day = 'Wed') as Wednesday,
+COUNTIF(Day = 'Thur') as Thursday,
+COUNTIF(Day = 'Fri') Friday,
+COUNTIF(Day= 'Sat') Saturday,
+COUNTIF(Day= 'Sun') as Sunday,
+COUNT(Rank) as Classes
+FROM `astral-theory-379217.TKD_Attendance.March_2023` 
+WHERE
+Attendance_Date LIKE '%Feb%'
+Group By 
+Rank
+
+## Total Classes per rank in March----------------------------------------------------------------------
+SELECT
+Rank,
+COUNTIF(Day = 'Mon') as Monday,
+COUNTIF(Day = 'Tue') as Tuesday,
+COUNTIF(Day = 'Wed') as Wednesday,
+COUNTIF(Day = 'Thur') as Thursday,
+COUNTIF(Day = 'Fri') Friday,
+COUNTIF(Day= 'Sat') Saturday,
+COUNTIF(Day= 'Sun') as Sunday,
+COUNT(Rank) as Classes
+FROM `astral-theory-379217.TKD_Attendance.March_2023` 
+WHERE
+Attendance_Date LIKE '%Mar%'
+Group By 
+Rank
+
+
+
