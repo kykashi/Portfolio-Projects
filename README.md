@@ -1,5 +1,17 @@
 # SQL Portfolio Projects 
 
+## [Facebook Ad Campaign Performance Analysis](https://github.com/kykashi/SQL-Projects/blob/main/Facebook%20Ad%20Campaign%20Analysis)
+- Analyzed campaign analysis for Facebook Ads, 3 different ad campaigns
+- Data extraction and exploration with SQL, data cleaning and data formatting in Microsoft Excel
+- Built a Tableau dashboard to analyze campaign ROI, cost, performance, and other KPIs
+- All 3 campaigns were most successful with 30-34 Males
+- Campaign ID 1178 was the most successful in terms of conversions, clicks, and reach but also cost the most to run
+- Campaign ID 936 was the only campaign that appealed slightly more to Female audience
+- For future Campaigns, recommended that the company focus on the 30-34 age group with some ads for the 45-49 age bracket
+- Also recommend that the company check for CTAs or other content in their ads as their impressions far and reach far outnumber their clicks
+### [Facebook Ad Campaign Tableau Dashboard(https://public.tableau.com/app/profile/kyle2216/viz/FacebookAdCampaignAnalysis_16862029922700/Dashboard1)
+#### [Data Set](https://www.kaggle.com/datasets/nguynnguynnht/facebook-adcampaigns)
+
 ## [The Legend of Zelda Video Game Sales](https://github.com/kykashi/SQL-Projects/blob/main/Legend%20of%20Zelda)
 - Data extraction with SQL, data cleaning, data formatting, and data analysis with Microsoft Excel
 - Built an interactive dashboard in Tableau for the number of copies sold by title and by platform
