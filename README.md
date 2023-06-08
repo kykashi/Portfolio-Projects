@@ -8,7 +8,7 @@
 - Campaign ID 1178 was the most successful in terms of conversions, clicks, and reach but also cost the most to run
 - Campaign ID 936 was the only campaign that appealed slightly more to Female audience
 - For future Campaigns, recommended that the company focus on the 30-34 age group with some ads for the 45-49 age bracket
-- Also recommend that the company check for CTAs or other content in their ads as their impressions far and reach far outnumber their clicks
+- Also recommend that the company check for CTAs or other content in their ads as their impressions and reach far outnumber their clicks
 ### [Facebook Ad Campaign Tableau Dashboard](https://public.tableau.com/app/profile/kyle2216/viz/FacebookAdCampaignAnalysis_16862029922700/Dashboard1)
 #### [Data Set](https://www.kaggle.com/datasets/nguynnguynnht/facebook-adcampaigns)
 
