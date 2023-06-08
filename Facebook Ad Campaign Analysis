@@ -1,0 +1,106 @@
+## Previewing Entire Data Set -----------------------------------------------------------------------------------------------------------------------------------
+
+SELECT  *
+FROM `astral-theory-379217.facebook.FacebookAd` 
+
+## Campaign Performance, Reach, Impressions, ROI, Conversion Rate-----------------------------------------------------------------------------------------------
+
+SELECT
+xyz_campaign_id as campaign,
+COUNTIF(gender = 'M' or gender = 'F') as Reach,
+COUNTIF(gender = 'M') as Male,
+COUNTIF(gender = 'F') as Female,
+SUM(Impressions) as Impressions,
+SUM(Clicks) as Clicks,
+SUM(Spent) as Total_Spent,
+SUM(Total_Conversion) as Inquiries,
+SUM(Approved_Conversion) as Conversions,
+(COUNTIF(gender = 'M' or gender = 'F' AND Approved_Conversion >= 1)/COUNTIF(gender = 'M' or gender = 'F'))*100 as conversion_rate,
+(SUM(Approved_Conversion)/COUNTIF(gender = 'M' or gender = 'F')) AS avg_per_customer
+FROM
+`astral-theory-379217.facebook.FacebookAd` 
+GROUP BY
+campaign
+ORDER BY
+Conversions
+
+## Determining the target audience age groups-----------------------------------------------------------------------------------------------------------
+
+SELECT DISTINCT 
+age
+FROM
+`astral-theory-379217.facebook.FacebookAd` 
+
+## Finding all targeted prospects and conversion rates based on age and gender-------------------------------------------------------------------------------------------
+
+SELECT
+xyz_campaign_id as campaign_id,
+COUNTIF(gender = 'M' or gender = 'F') as Reach,
+COUNTIF(gender = 'M') as Male,
+COUNTIF(gender = 'F') as Female,
+COUNTIF(age = '30-34') as `30-34`,
+COUNTIF(age = '35-39') as `35-39`,
+COUNTIF(age = '40-44') as `40-44`,
+COUNTIF(age = '45-49') as `45-49`
+FROM
+`astral-theory-379217.facebook.FacebookAd` 
+GROUP BY
+campaign_id
+
+## Determining Conversion Rates for Each of the audiences by Campaign------------------------------------------------------------------------------------------------------
+SELECT
+xyz_campaign_id as campaign,
+COUNT(gender) as Reach,
+COUNTIF(gender = 'M') as Male,
+COUNTIF(gender = 'F') as Female,
+COUNTIF(age = '30-34') as `30-34`,
+COUNTIF(age = '35-39') as `35-39`,
+COUNTIF(age = '40-44') as `40-44`,
+COUNTIF(age = '45-49') as `45-49`,
+(COUNTIF(gender = 'M' AND Approved_Conversion >= 1)/COUNTIF(gender = 'M'))*100 as Male_converted,
+(COUNTIF(gender = 'F' AND Approved_Conversion >=1)/COUNTIF(gender = 'F'))*100 as Female_converted,
+(COUNTIF(age = '30-34' AND Approved_Conversion >=1)/COUNTIF(age = '30-34'))*100 as `30-34_conv`,
+(COUNTIF(age = '35-39' AND Approved_Conversion >=1)/COUNTIF(age = '35-39'))*100 as `35-39_conv`,
+(COUNTIF(age = '40-44' AND Approved_Conversion >=1 )/COUNTIF(age = '40-44'))*100 as `40-44_conv`,
+(COUNTIF(age = '45-49'AND Approved_Conversion >=1)/COUNTIF(age = '45-49'))*100 as `45-49_conv`,
+FROM
+`astral-theory-379217.facebook.FacebookAd` 
+GROUP BY
+campaign
+
+
+## Determining the Top Performing Ads For Each Campaign------------------------------------------------------------------------------------------------------------------------
+SELECT
+ad_id,
+xyz_campaign_id,
+SUM(Approved_Conversion) as Conversions,
+SUM(Spent) as Total_Spent
+FROM 
+`astral-theory-379217.facebook.FacebookAd` 
+GROUP BY
+ad_id, xyz_campaign_id
+ORDER BY
+Conversions desc
+
+WITH ranked_ads AS (
+  SELECT
+    ad_id,
+    xyz_campaign_id as campaign,
+    SUM(Approved_Conversion) AS Conversions,
+    SUM(Spent) AS Total_Spent,
+    ROW_NUMBER() OVER (PARTITION BY xyz_campaign_id ORDER BY SUM(Approved_Conversion) DESC) AS row_num
+  FROM 
+    `astral-theory-379217.facebook.FacebookAd` 
+  GROUP BY
+    ad_id, campaign
+)
+SELECT
+  ad_id as Ad,
+  ranked_ads.campaign,
+  Conversions,
+  Total_Spent
+FROM
+  ranked_ads
+WHERE
+  row_num <= 5
+ORDER BY ranked_ads.Conversions desc
